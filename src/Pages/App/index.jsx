@@ -23,6 +23,7 @@ const AppRoutes = () => {
 
 const App = () => {
   return (
+    
     <ShoppingCartProvider>
       <BrowserRouter>
       
