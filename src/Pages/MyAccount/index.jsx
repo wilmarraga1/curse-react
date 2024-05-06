@@ -1,9 +1,12 @@
 import Layout from '../../Components/Layout'
+import StudentForm from '../../Components/StudentForm'
 
 function MyAccount() {
   return (
     <Layout>
-      MyAccount
+      Mis Registros
+
+      <StudentForm/>
     </Layout>
   )
 }

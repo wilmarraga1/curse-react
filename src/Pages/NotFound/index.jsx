@@ -4,7 +4,7 @@ import Login from '../../Components/Login'
 function NotFound() {
   return (
     <Layout>
-      NotFound
+      Inicio
     <Login/>
     </Layout>
   )

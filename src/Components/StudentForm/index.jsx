@@ -1,44 +1,42 @@
 import React, { useState } from 'react';
-import "./style.css"
 
+const StudentForm = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    age: '',
+    email: '',
+    grade: ''
+  });
 
-const Formulario = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        age: '',
-        email: '',
-        grade: ''
+  const [students, setStudents] = useState([]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
     });
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStudents([...students, formData]);
+    setFormData({
+      firstName: '',
+      lastName: '',
+      age: '',
+      email: '',
+      grade: ''
+    });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-        // Aquí puedes añadir la función para enviar los datos a una base de datos o a algún servicio
-    };
-
-    return (
-        <div>
-            <h2>Formulario de Estudiante</h2>
-
-            <div className="border-b border-gray-900/10 pb-12">
-            </div>
-
-            <form className="space-y-12" onSubmit={handleSubmit}>
-
-
-
-
-                <div className="form border-b border-gray-900/10 pb-12">
+  return (
+    <div>
+      <h2>Formulario de Estudiante</h2>
+      <form className='grid gap-6 hover:gap-6' onSubmit={handleSubmit}>
+       
+        <div className="form border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">Formulario de Estudiante</h2>
                     <p className="mt-1 text-sm leading-6 text-gray-600">Agrege sus datos para tener su informacion .</p>
 
@@ -88,13 +86,36 @@ const Formulario = () => {
                     </div>
                 </div>
 
-            </form>
-            
-            
-        </div>
-        
 
-    );
+      </form>
+
+      <h2>Registros de Estudiantes</h2>
+      {students.length > 0 ? (
+        <table>
+          <thead>
+            <tr>
+              <th className=''>Nombre</th>
+              <th>Edad</th>
+              <th>Correo Electrónico</th>
+              <th>Nota del Curso</th>
+            </tr>
+          </thead>
+          <tbody className='cursor-pointer'>
+            {students.map((student, index) => (
+              <tr key={index}>
+                <td className=''>{student.firstName} {student.lastName}</td>
+                <td>{student.age}</td>
+                <td>{student.email}</td>
+                <td>{student.grade}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>No hay estudiantes registrados</p>
+      )}
+    </div>
+  );
 };
 
-export default Formulario;
+export default StudentForm;
