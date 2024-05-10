@@ -1,9 +1,12 @@
 import Layout from '../../Components/Layout'
+import Login from '../../Components/Login'
 
 function NotFound() {
   return (
     <Layout>
-      NotFound
+      Inicio
+      <img className='w-8 hover:w-10 cursor-pointer'  src="public/Login.png  "  alt=""  />
+    <Login/>
     </Layout>
   )
 }

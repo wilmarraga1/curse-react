@@ -1,0 +1,23 @@
+form
+{
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #c4d6f27c;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.boton {
+    background-color: #2691d9;
+    border: 1px solid #2691d9;
+    color: white;
+    transition-duration: 1s;
+    border-radius: 10%;
+  }
+  .boton:hover{  
+    transform: rotateY(360deg);
+  }
+  .boton:active{  
+    background-color: #13496c;
+    color: #2691d9;
+  }
