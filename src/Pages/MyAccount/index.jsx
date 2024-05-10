@@ -1,12 +1,18 @@
 import Layout from '../../Components/Layout'
-import StudentForm from '../../Components/StudentForm'
+import StudentForm from '../../Components/StudentForm/database'
+import { useState } from 'react'
 
 function MyAccount() {
+  
+  const [students, setItems] = useState(null)
   return (
     <Layout>
       Mis Registros
 
-      <StudentForm/>
+   
+    <StudentForm estudentes={students} />
+    
+      
     </Layout>
   )
 }

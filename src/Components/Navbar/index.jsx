@@ -36,7 +36,7 @@ const Navbar = () => {
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
           }>
-            My Account
+            Mi Registro
           </NavLink>
         </li>
         <li>

@@ -1,44 +1,47 @@
-import React, { useState } from 'react';
-import "./style.css"
-
+import { useState } from 'react';
+import StudentForm from '../StudentForm';
+import './style.css';
 
 const Formulario = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        age: '',
-        email: '',
-        grade: ''
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    age: '',
+    email: '',
+    grade: ''
+  });
+
+  const [students, setStudents] = useState([]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
     });
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
-    
+  
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-        // Aquí puedes añadir la función para enviar los datos a una base de datos o a algún servicio
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStudents([...students, formData]);
+    setFormData({
+      firstName: '',
+      lastName: '',
+      age: '',
+      email: '',
+      grade: ''
+    });
+  };
+  
 
-    return (
-        <div>
-            <h2>Formulario de Estudiante</h2>
-
-            <div className="border-b border-gray-900/10 pb-12">
-            </div>
-
-            <form className="space-y-12" onSubmit={handleSubmit}>
-
-
-
-
-                <div className="form border-b border-gray-900/10 pb-12">
+  return (
+    <div>
+      <h2>Formulario de Estudiante</h2>
+      <form className='grid gap-6 hover:gap-6' onSubmit={handleSubmit} >
+       
+        <div className="form border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">Formulario de Estudiante</h2>
                     <p className="mt-1 text-sm leading-6 text-gray-600">Agrege sus datos para tener su informacion .</p>
 
@@ -46,7 +49,13 @@ const Formulario = () => {
                         <div className="sm:col-span-3">
                             <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
                             <div className="mt-2">
-                                <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' />
+                                <input 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName" 
+                                value={formData.firstName} 
+                                onChange={handleChange} 
+                                required className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' />
                             </div>
                         </div>
 
@@ -87,14 +96,38 @@ const Formulario = () => {
 
                     </div>
                 </div>
+      {/* <StudentForm students={students} /> */}
 
-            </form>
-            
-            
-        </div>
-        
 
-    );
+      </form>
+
+      <h2>Registros de Estudiantes</h2>
+      {students.length > 0 ? (
+        <table>
+          <thead>
+            <tr>
+              <th className=''>Nombre</th>
+              <th>Edad</th>
+              <th>Correo Electrónico</th>
+              <th>Nota del Curso</th>
+            </tr>
+          </thead>
+          <tbody className='cursor-pointer'>
+            {students.map((student, index) => (
+              <tr key={index}>
+                <td className=''>{student.firstName} {student.lastName}</td>
+                <td>{student.age}</td>
+                <td>{student.email}</td>
+                <td>{student.grade}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p >No hay estudiantes registrados</p>
+      )}
+    </div>
+  );
 };
 
 export default Formulario;
